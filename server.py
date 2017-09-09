@@ -3,9 +3,11 @@ app = Flask(__name__)
 app.secret_key = 'ThisIsSecret'
 
 
+
 @app.route("/")
 def index():
-	session["count"]
+	if "count" not in session:
+		session["count"] = 0
 	session["count"] += 1
 	return render_template("index.html", count_html=session['count'])
 
